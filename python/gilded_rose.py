@@ -10,6 +10,7 @@ class GildedRose(object):
             is_aged_brie = item.name == "Aged Brie"                                          
             is_backstage = item.name == "Backstage passes to a TAFKAL80ETC concert"          
             is_sulfuras  = item.name == "Sulfuras, Hand of Ragnaros"
+            is_conjured  = "Conjured" in item.name 
             if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
                 if item.quality > 0:
                     if item.name != "Sulfuras, Hand of Ragnaros":
