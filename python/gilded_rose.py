@@ -17,29 +17,24 @@ class GildedRose(object):
 
             item.sell_in -= 1
 
-            if not is_aged_brie and not is_backstage:
-                if item.quality > 0:
-                    item.quality = item.quality - 1
+            if is_aged_brie:
+                item.quality += 1
+                if item.sell_in < 0:
+                    item.quality += 1
+
+            elif is_backstage:
+                item.quality += 1
+                if item.sell_in < 10:
+                    item.quality += 1
+                if item.sell_in < 5:
+                    item.quality += 1
+                if item.sell_in < 0:
+                    item.quality = 0
+
             else:
-                if item.quality < 50:
-                    item.quality = item.quality + 1
-                    if is_backstage:
-                        if item.sell_in < 10:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-                        if item.sell_in < 5:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-            if item.sell_in < 0:
-                if not is_aged_brie:
-                    if not is_backstage:
-                        if item.quality > 0:
-                            item.quality = item.quality - 1
-                    else:
-                        item.quality = 0
-                else:
-                    if item.quality < 50:
-                        item.quality = item.quality + 1
+                item.quality -= 1
+                if item.sell_in < 0:
+                    item.quality -= 1
 
 
 class Item:
