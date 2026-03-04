@@ -11,30 +11,32 @@ class GildedRose(object):
             is_backstage = item.name == "Backstage passes to a TAFKAL80ETC concert"          
             is_sulfuras  = item.name == "Sulfuras, Hand of Ragnaros"
             is_conjured  = "Conjured" in item.name 
+
+            if is_sulfuras:
+                continue
+
+            item.sell_in -= 1
+
             if not is_aged_brie and not is_backstage:
                 if item.quality > 0:
-                    if not is_sulfuras:
-                        item.quality = item.quality - 1
+                    item.quality = item.quality - 1
             else:
                 if item.quality < 50:
                     item.quality = item.quality + 1
                     if is_backstage:
-                        if item.sell_in < 11:
+                        if item.sell_in < 10:
                             if item.quality < 50:
                                 item.quality = item.quality + 1
-                        if item.sell_in < 6:
+                        if item.sell_in < 5:
                             if item.quality < 50:
                                 item.quality = item.quality + 1
-            if item.name != "Sulfuras, Hand of Ragnaros":
-                item.sell_in = item.sell_in - 1
             if item.sell_in < 0:
                 if not is_aged_brie:
                     if not is_backstage:
                         if item.quality > 0:
-                            if not is_sulfuras:
-                                item.sell_in = item.sell_in - 1
+                            item.quality = item.quality - 1
                     else:
-                        item.quality = item.quality - item.quality
+                        item.quality = 0
                 else:
                     if item.quality < 50:
                         item.quality = item.quality + 1
