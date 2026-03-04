@@ -13,7 +13,7 @@ class GildedRose(object):
             is_conjured  = "Conjured" in item.name 
             if not is_aged_brie and not is_backstage:
                 if item.quality > 0:
-                    if item.name != "Sulfuras, Hand of Ragnaros":
+                    if not is_sulfuras:
                         item.quality = item.quality - 1
             else:
                 if item.quality < 50:
