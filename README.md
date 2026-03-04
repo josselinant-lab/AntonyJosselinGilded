@@ -1,9 +1,10 @@
 # Objectifs Gilded Rose en python
 
 Installation environnement:
+
 ```
 $ cd python
-$ pip install -r requirements.txt 
+$ pip install -r requirements.txt
 ```
 
 ## Tâches à réaliser
@@ -17,10 +18,10 @@ $ pip install -r requirements.txt
 - 7 Metre en place le type hinting dans votre code et utiliser static type checker **mypy .**
 - 9 terminer par une code review de vos collègues
 
-
 ## Ressources
 
 https://www.youtube.com/watch?v=pTB30aXS77U
 
-
 Amusez-vous bien XoXo
+
+## Juste pour le premier commit
