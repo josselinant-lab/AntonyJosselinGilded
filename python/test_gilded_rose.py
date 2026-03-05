@@ -37,6 +37,22 @@ class GildedRoseTest(unittest.TestCase):
         GildedRose(items).update_quality()
         self.assertEqual(items[0].quality, 50)
 
+    def test_sulfuras_never_changes(self):
+        items = [Item("Sulfuras, Hand of Ragnaros", sell_in=5, quality=80)]
+        GildedRose(items).update_quality()
+        self.assertEqual(items[0].quality, 80)
+        self.assertEqual(items[0].sell_in, 5)
+
+    def test_backstage_increases_by_1_above_10(self):
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", sell_in=15, quality=20)]
+        GildedRose(items).update_quality()
+        self.assertEqual(items[0].quality, 21)
+
+    def test_backstage_increases_by_2_at_10(self):
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", sell_in=10, quality=20)]
+        GildedRose(items).update_quality()
+        self.assertEqual(items[0].quality, 22)
+
         
 if __name__ == '__main__':
     unittest.main()
