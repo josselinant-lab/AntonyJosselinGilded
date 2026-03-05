@@ -12,6 +12,16 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(items[0].quality, 19)
         self.assertEqual(items[0].sell_in, 9)
 
+    def test_normal_item_degrades_by_2_after_expiration(self):
+        items = [Item("Vest", sell_in=0, quality=20)]
+        GildedRose(items).update_quality()
+        self.assertEqual(items[0].quality, 18)
+
+    def test_quality_never_negative(self):
+        items = [Item("Vest", sell_in=0, quality=0)]
+        GildedRose(items).update_quality()
+        self.assertEqual(items[0].quality, 0)
+
         
 if __name__ == '__main__':
     unittest.main()
