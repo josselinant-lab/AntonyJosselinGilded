@@ -22,6 +22,21 @@ class GildedRoseTest(unittest.TestCase):
         GildedRose(items).update_quality()
         self.assertEqual(items[0].quality, 0)
 
+    def test_aged_brie_increases_quality(self):
+        items = [Item("Aged Brie", sell_in=10, quality=20)]
+        GildedRose(items).update_quality()
+        self.assertEqual(items[0].quality, 21)
+
+    def test_aged_brie_increases_by_2_after_expiration(self):
+        items = [Item("Aged Brie", sell_in=0, quality=20)]
+        GildedRose(items).update_quality()
+        self.assertEqual(items[0].quality, 22)
+
+    def test_quality_never_above_50(self):
+        items = [Item("Aged Brie", sell_in=10, quality=50)]
+        GildedRose(items).update_quality()
+        self.assertEqual(items[0].quality, 50)
+
         
 if __name__ == '__main__':
     unittest.main()
